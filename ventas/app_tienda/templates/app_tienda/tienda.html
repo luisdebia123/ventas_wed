@@ -1,0 +1,44 @@
+{%  extends 'base.html' %}
+{% load static %}
+
+
+
+{% block contenidos %}
+
+<div class="container">
+
+    <div style="float: right   ;">
+        <!--<p style="color: white;">Toral $: {{ importe_total_carro }}</p>-->
+
+        {% include 'carro/widget.html' %}
+    </div>
+
+    <div class="row">
+
+        {% for producto in productos  %}
+        
+            <div class="col-md-4">
+                <div class="card" style="width: 70%; margin: 5px;">
+                    <img src="{{ producto.imagen.url }}" class="card-img-top">
+
+                    <div class="card-body" style="text-align: center;">
+                        <h7 class="card-title">{{ producto.id}}</h7>
+                        <h7 class="card-title">{{ producto.nombre}}</h7>
+                        <p class="card-text">&nbsp;${{ producto.precio }}</p>
+                    </div>
+
+                    <div class="card" style="text-align: center;">
+                        <a href="{% url 'app_carro:agregar_producto' producto.id %}"
+                            class="btn btn-success btn-sm btn-block btn-outline btn-wrap-text" >Agregar al carro
+                        </a>
+                    </div>
+
+                </div>    
+            </div>
+
+        {% endfor%}
+
+    </div>
+</div>
+
+{% endblock %}
